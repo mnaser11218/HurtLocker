@@ -36,16 +36,11 @@ public class Main {
     }
 
     public LinkedHashMap<String, Integer> createHashMapForItem(ArrayList<String> lists, String regexItem) {
-       // HashMap<String, Integer> list = new HashMap<>();
        checkIfWordIsMisSpelled(regexItem);
         Pattern pattern = Pattern.compile(regexItem, Pattern.CASE_INSENSITIVE);
-
         for( int i =0; i< lists.size(); i++){
-
             Matcher matcher = pattern.matcher(lists.get(i));
-
             if(matcher.find()){
-             //   updateItemHashMap(capitalizeFirstLetter(matcher.group()), value);
                 String item = capitalizeFirstLetter(matcher.group());
                 String price = getPriceOfItem(lists.get(i));
                 if(price != null){
@@ -54,16 +49,10 @@ public class Main {
                 }
             }
         }
-        for (Map.Entry<String, Integer> entry : list.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("Key=" + key + ", Value=" + value);
-        }
-
         return list;
     }
 
-    private void checkIfWordIsMisSpelled(String regexItem) {
+    public void checkIfWordIsMisSpelled(String regexItem) {
         list.clear();
         if(regexItem.equals("\\bcookies\\b")) {
            // regexItem = "(?i)(C......)";
@@ -82,7 +71,7 @@ public class Main {
       return string.substring(0,1).toUpperCase() + string.substring(1).toLowerCase();
     }
 
-    private String getPriceOfItem(String s) {
+    public String getPriceOfItem(String s) {
         String patternString = "\\d\\.\\d\\d";
         Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(s);
@@ -104,32 +93,29 @@ public class Main {
 
     public void writeFile(String results) {
         try {
-         //  String results = toStringHashMap(hash);
             FileWriter fileWriter = new FileWriter("src/main/resources/outPut2.txt", true);
-            System.out.println("file created");
             fileWriter.write(results);
-            System.out.println("succesfully wrote to file");
            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public void printOutFinalResults() throws Exception {
+        String results ="";
+       String string = readRawDataToString();
+        ArrayList<String> lists= splitStringintoAnArrayOfElements(string);
+        results+= toStringHashMap(createHashMapForItem(lists, "\\bmilk\\b"));
+        results+= toStringHashMap(createHashMapForItem(lists, "\\bBread\\b"));
+        results+= toStringHashMap(createHashMapForItem(lists, "\\bcookies\\b"))   ;
+        results+= toStringHashMap(createHashMapForItem(lists, "\\bapples\\b"));
+        results+= findErrors(":;", string);
+        writeFile(results);
+    }
+
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        String results ="";
-        String string = main.readRawDataToString();
-        ArrayList<String> lists= main.splitStringintoAnArrayOfElements(string);
-        LinkedHashMap<String, Integer> hashMilk = main.createHashMapForItem(lists, "\\bmilk\\b");
-        results += main.toStringHashMap(hashMilk);
-        LinkedHashMap<String, Integer> hashBread = main.createHashMapForItem(lists, "\\bBread\\b");
-        results += main.toStringHashMap(hashBread);
-        LinkedHashMap<String, Integer> hashCookies = main.createHashMapForItem(lists, "\\bcookies\\b");
-        results += main.toStringHashMap(hashCookies);
-        LinkedHashMap<String, Integer> hashApples = main.createHashMapForItem(lists, "\\bapples\\b");
-        results += main.toStringHashMap(hashApples);
-        results+= main.findErrors(":;", string);
-        main.writeFile(results);
+     main.printOutFinalResults();
 
     }
 
