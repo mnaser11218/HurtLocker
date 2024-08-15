@@ -71,8 +71,72 @@ public class TestHurtLocker {
         Assert.assertEquals(main.errors, expected);
     }
 
+    @Test
+    public void testWriterMethod() throws Exception {
+        Main main = new Main();
+        String results = main.readRawDataToString();
+        boolean actual = main.writeFile(results);
+        boolean expected = true;
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testPrintFinalResults() throws Exception {
+        Main main = new Main();
+        String results = main.readRawDataToString();
+        String actual = main.printOutFinalResults();
+        String expected = " name: Milk          seen: 6 times. \n" +
+                " ============       ========\n" +
+                " price: 3.23        seen: 5 times. \n" +
+                " ------------       --------\n" +
+                " price: 1.23        seen: 1 times. \n" +
+                " ------------       --------\n" +
+                "\n" +
+                " \n" +
+                " name: Bread          seen: 6 times. \n" +
+                " ============       ========\n" +
+                " price: 1.23        seen: 6 times. \n" +
+                " ------------       --------\n" +
+                "\n" +
+                " \n" +
+                " name: Cookies          seen: 8 times. \n" +
+                " ============       ========\n" +
+                " price: 2.25        seen: 8 times. \n" +
+                " ------------       --------\n" +
+                "\n" +
+                " \n" +
+                " name: Apples          seen: 4 times. \n" +
+                " ============       ========\n" +
+                " price: 0.25        seen: 2 times. \n" +
+                " ------------       --------\n" +
+                " price: 0.23        seen: 2 times. \n" +
+                " ------------       --------\n" +
+                "\n" +
+                " \n" +
+                "Errors         \t \t seen: 4 times";
+        Assert.assertEquals(actual, expected);
+    }
 
 
+    @Test
+    public void testToStringHashMap() throws Exception {
+        Main main = new Main();
+        String string = main.readRawDataToString();
+
+        ArrayList<String> lists= main.splitStringintoAnArrayOfElements(string);
+        String actual=  main.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
+
+       // boolean actual = main.toStringHashMap();
+       String expected =" name: Milk          seen: 6 times. \n" +
+               " ============       ========\n" +
+               " price: 3.23        seen: 5 times. \n" +
+               " ------------       --------\n" +
+               " price: 1.23        seen: 1 times. \n" +
+               " ------------       --------\n" +
+               "\n" +
+               " \n";
+        Assert.assertEquals(actual, expected);
+    }
 
 
 

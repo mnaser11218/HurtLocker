@@ -91,17 +91,20 @@ public class Main {
     };
 
 
-    public void writeFile(String results) {
+    public boolean writeFile(String results) {
+        boolean writenFile = false;
         try {
             FileWriter fileWriter = new FileWriter("src/main/resources/outPut2.txt", true);
             fileWriter.write(results);
            fileWriter.close();
+           writenFile = true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return writenFile;
     }
 
-    public void printOutFinalResults() throws Exception {
+    public String printOutFinalResults() throws Exception {
         String results ="";
        String string = readRawDataToString();
         ArrayList<String> lists= splitStringintoAnArrayOfElements(string);
@@ -111,15 +114,19 @@ public class Main {
         results+= toStringHashMap(createHashMapForItem(lists, "\\bapples\\b"));
         results+= findErrors(":;", string);
         writeFile(results);
+        return results;
     }
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-     main.printOutFinalResults();
+        String string = main.readRawDataToString();
+
+        ArrayList<String> lists= main.splitStringintoAnArrayOfElements(string);
+        System.out.println(main.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b")));
 
     }
 
-    private String toStringHashMap(LinkedHashMap<String, Integer> hash) {
+    public String toStringHashMap(LinkedHashMap<String, Integer> hash) {
         String results = "";
         int i = 0;
         for(Map.Entry<String, Integer> entry : hash.entrySet()){
