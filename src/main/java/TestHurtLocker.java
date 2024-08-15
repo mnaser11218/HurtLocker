@@ -12,7 +12,6 @@ public class TestHurtLocker {
     public void testSplittingData() throws Exception {
         Main main = new Main();
         String results = main.readRawDataToString();
-       // System.out.println(results);
         Assert.assertEquals(main.splitStringintoAnArrayOfElements(results).size(), 28);
     }
 
@@ -75,7 +74,7 @@ public class TestHurtLocker {
     public void testWriterMethod() throws Exception {
         Main main = new Main();
         String results = main.readRawDataToString();
-        boolean actual = main.writeFile(results);
+        boolean actual = main.helperMethods.writeFile(results);
         boolean expected = true;
         Assert.assertEquals(actual, expected);
     }
@@ -122,9 +121,8 @@ public class TestHurtLocker {
     public void testToStringHashMap() throws Exception {
         Main main = new Main();
         String string = main.readRawDataToString();
-
         ArrayList<String> lists= main.splitStringintoAnArrayOfElements(string);
-        String actual=  main.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
+        String actual=  main.helperMethods.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
 
        // boolean actual = main.toStringHashMap();
        String expected =" name: Milk          seen: 6 times. \n" +
