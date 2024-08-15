@@ -42,15 +42,19 @@ public class Main {
         for( int i =0; i< lists.size(); i++){
             Matcher matcher = pattern.matcher(lists.get(i));
             if(matcher.find()){
-                String item = helperMethods.capitalizeFirstLetter(matcher.group());
-                String price = helperMethods.getPriceOfItem(lists.get(i));
-                if(price != null){
-                    list.put(item,list.getOrDefault(item, 0)+1);
-                    list.put(price, list.getOrDefault(price, 0)+1);
-                }
+                addItemAndPriceToHashMap(matcher.group(), lists.get(i));
             }
         }
         return list;
+    }
+
+    private void addItemAndPriceToHashMap(String i, String itemString ) {
+        String item = helperMethods.capitalizeFirstLetter(i);
+        String price = helperMethods.getPriceOfItem(itemString);
+        if(price != null){
+            list.put(item,list.getOrDefault(item, 0)+1);
+            list.put(price, list.getOrDefault(price, 0)+1);
+        }
     }
 
     public void checkIfWordIsMisSpelled(String regexItem) {
@@ -89,5 +93,6 @@ public class Main {
         helperMethods.writeFile(results);
         return results;
     }
+
 }
 
