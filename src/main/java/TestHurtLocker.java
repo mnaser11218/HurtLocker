@@ -84,32 +84,32 @@ public class TestHurtLocker {
         Main main = new Main();
         String results = main.readRawDataToString();
         String actual = main.printOutFinalResults();
-        String expected = " name: Milk        seen: 6 times. \n" +
-                " ============            ========\n" +
-                " price: 3.23        seen: 5 times. \n" +
-                " ------------       --------\n" +
-                " price: 1.23        seen: 1 times. \n" +
-                " ------------       --------\n" +
+        String expected = "name:    Milk                   seen:6 times.\n" +
+                "==============                  =============\n" +
+                "price:    3.23                   seen:5 times.\n" +
+                "--------------                  -------------\n" +
+                "price:    1.23                   seen:1 times.\n" +
+                "--------------                  -------------\n" +
                 "\n" +
                 " \n" +
-                " name: Bread        seen: 6 times. \n" +
-                " ============       ========\n" +
-                " price: 1.23        seen: 6 times. \n" +
-                " ------------       --------\n" +
+                "name:   Bread                   seen:6 times.\n" +
+                "==============                  =============\n" +
+                "price:    1.23                   seen:6 times.\n" +
+                "--------------                  -------------\n" +
                 "\n" +
                 " \n" +
-                " name: Cookies        seen: 8 times. \n" +
-                " ============       ========\n" +
-                " price: 2.25        seen: 8 times. \n" +
-                " ------------       --------\n" +
+                "name: Cookies                   seen:8 times.\n" +
+                "==============                  =============\n" +
+                "price:    2.25                   seen:8 times.\n" +
+                "--------------                  -------------\n" +
                 "\n" +
                 " \n" +
-                " name: Apples        seen: 4 times. \n" +
-                " ============       ========\n" +
-                " price: 0.25        seen: 2 times. \n" +
-                " ------------       --------\n" +
-                " price: 0.23        seen: 2 times. \n" +
-                " ------------       --------\n" +
+                "name:  Apples                   seen:4 times.\n" +
+                "==============                  =============\n" +
+                "price:    0.25                   seen:2 times.\n" +
+                "--------------                  -------------\n" +
+                "price:    0.23                   seen:2 times.\n" +
+                "--------------                  -------------\n" +
                 "\n" +
                 " \n" +
                 "Errors         \t \t seen: 4 times";
@@ -125,14 +125,14 @@ public class TestHurtLocker {
         String actual=  main.hM.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
 
        // boolean actual = main.toStringHashMap();
-       String expected =" name: Milk        seen: 6 times. \n" +
-               " ============       ========\n" +
-               " price: 3.23        seen: 5 times. \n" +
-               " ------------       --------\n" +
-               " price: 1.23        seen: 1 times. \n" +
-               " ------------       --------\n" +
-               "\n" +
-               " \n";
+        System.out.println(actual);
+       String expected ="name:    Milk                   seen:6 times.\n" +
+               "==============                  =============\n" +
+               "price:    3.23                   seen:5 times.\n" +
+               "--------------                  -------------\n" +
+               "price:    1.23                   seen:1 times.\n" +
+               "--------------                  -------------\n" +
+               "\n \n";
         Assert.assertEquals(actual, expected);
     }
 

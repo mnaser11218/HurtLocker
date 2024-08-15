@@ -43,17 +43,10 @@ public class HelperMethods {
             if(i == 0){
                 results += String.format("name: %7s%" + 18 + "s seen:%d times.",key,"",value);
                 results += String.format("\n============== %-" + 16 + "s =============\n", "");
-//                results += " name: " + key +"        seen: " + value + " times." +" \n ";
-//                results += "============       ========" + "\n";
                 i++;
             }else{
-//                results += " price: " + key +"        seen: " + value + " times." +" \n ";
-//                results += "------------       --------" + "\n";
-//                i++;
                 results+= String.format("price: %7s%" + 18 + "s seen:%d times.",key,"",value);
                 results += String.format("\n-------------- %-" + 16 + "s -------------\n", "");
-
-
             }
         }
         results += "\n \n";
