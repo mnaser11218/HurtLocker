@@ -39,12 +39,12 @@ public class Main {
     public LinkedHashMap<String, Integer> createHashMapForItem(ArrayList<String> lists, String regexItem) {
        checkIfWordIsMisSpelled(regexItem);
         Pattern pattern = Pattern.compile(regexItem, Pattern.CASE_INSENSITIVE);
-        for( int i =0; i< lists.size(); i++){
-            Matcher matcher = pattern.matcher(lists.get(i));
+        lists.forEach(item-> {
+            Matcher matcher = pattern.matcher(item);
             if(matcher.find()){
-                addItemAndPriceToHashMap(matcher.group(), lists.get(i));
+                addItemAndPriceToHashMap(matcher.group(), item);
             }
-        }
+        });
         return list;
     }
 
@@ -61,13 +61,13 @@ public class Main {
         list.clear();
         if(regexItem.equals("\\bcookies\\b")) {
             Pattern pattern = Pattern.compile("Co0kies", Pattern.CASE_INSENSITIVE);
-            for (int i = 0; i < this.arraylists.size(); i++) {
-                Matcher matcher = pattern.matcher(arraylists.get(i));
+            arraylists.forEach(ele-> {
+                Matcher matcher = pattern.matcher(ele);
                 if(matcher.find()){
                     list.put("Cookies", 1);
-                    list.put(helperMethods.getPriceOfItem(arraylists.get(i)), 1);
+                    list.put(helperMethods.getPriceOfItem(ele), 1);
                 }
-            }
+            });
         }
     }
 
