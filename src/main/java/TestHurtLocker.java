@@ -85,7 +85,7 @@ public class TestHurtLocker {
         String results = main.readRawDataToString();
         String actual = main.printOutFinalResults();
         String expected = " name: Milk        seen: 6 times. \n" +
-                " ============       ========\n" +
+                " ============            ========\n" +
                 " price: 3.23        seen: 5 times. \n" +
                 " ------------       --------\n" +
                 " price: 1.23        seen: 1 times. \n" +
