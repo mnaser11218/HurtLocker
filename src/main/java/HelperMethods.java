@@ -41,12 +41,14 @@ public class HelperMethods {
             String key = entry.getKey();
             Integer value = entry.getValue();
             if(i == 0){
-                results += " name: " + key +"          seen: " + value + " times." +" \n ";
+                results += " name: " + key +"        seen: " + value + " times." +" \n ";
                 results += "============       ========" + "\n";
                 i++;
             }else{
                 results += " price: " + key +"        seen: " + value + " times." +" \n ";
                 results += "------------       --------" + "\n";
+                i++;
+
             }
         }
         results += "\n \n";

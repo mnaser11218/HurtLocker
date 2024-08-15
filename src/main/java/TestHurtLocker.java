@@ -74,7 +74,7 @@ public class TestHurtLocker {
     public void testWriterMethod() throws Exception {
         Main main = new Main();
         String results = main.readRawDataToString();
-        boolean actual = main.helperMethods.writeFile(results);
+        boolean actual = main.hM.writeFile(results);
         boolean expected = true;
         Assert.assertEquals(actual, expected);
     }
@@ -84,7 +84,7 @@ public class TestHurtLocker {
         Main main = new Main();
         String results = main.readRawDataToString();
         String actual = main.printOutFinalResults();
-        String expected = " name: Milk          seen: 6 times. \n" +
+        String expected = " name: Milk        seen: 6 times. \n" +
                 " ============       ========\n" +
                 " price: 3.23        seen: 5 times. \n" +
                 " ------------       --------\n" +
@@ -92,19 +92,19 @@ public class TestHurtLocker {
                 " ------------       --------\n" +
                 "\n" +
                 " \n" +
-                " name: Bread          seen: 6 times. \n" +
+                " name: Bread        seen: 6 times. \n" +
                 " ============       ========\n" +
                 " price: 1.23        seen: 6 times. \n" +
                 " ------------       --------\n" +
                 "\n" +
                 " \n" +
-                " name: Cookies          seen: 8 times. \n" +
+                " name: Cookies        seen: 8 times. \n" +
                 " ============       ========\n" +
                 " price: 2.25        seen: 8 times. \n" +
                 " ------------       --------\n" +
                 "\n" +
                 " \n" +
-                " name: Apples          seen: 4 times. \n" +
+                " name: Apples        seen: 4 times. \n" +
                 " ============       ========\n" +
                 " price: 0.25        seen: 2 times. \n" +
                 " ------------       --------\n" +
@@ -122,10 +122,10 @@ public class TestHurtLocker {
         Main main = new Main();
         String string = main.readRawDataToString();
         ArrayList<String> lists= main.splitStringintoAnArrayOfElements(string);
-        String actual=  main.helperMethods.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
+        String actual=  main.hM.toStringHashMap(main.createHashMapForItem(lists, "\\bmilk\\b"));
 
        // boolean actual = main.toStringHashMap();
-       String expected =" name: Milk          seen: 6 times. \n" +
+       String expected =" name: Milk        seen: 6 times. \n" +
                " ============       ========\n" +
                " price: 3.23        seen: 5 times. \n" +
                " ------------       --------\n" +
